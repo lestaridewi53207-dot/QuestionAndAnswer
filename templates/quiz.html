@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+</head>
+<body>
+
+{% if not done %}
+    <h1>Quiz</h1>
+    <form method="POST">
+
+        {% for q in questions %}
+            <p>{{ loop.index }}. {{ q.question }}</p>
+            {% for c in q.choices %}
+                <input type="radio" name="q{{ loop.parent.index0 }}" value="{{ c }}">
+                {{ c }}<br>
+            {% endfor %}
+            <br>
+        {% endfor %}
+
+        <button type="submit">Kumpulkan Jawaban</button>
+    </form>
+
+{% else %}
+    <h1>Quiz Selesai!</h1>
+    <p>Skor kamu: {{ score }} / {{ questions|length }}</p>
+    <a href="/">Kembali</a>
+{% endif %}
+
+</body>
+</html>
